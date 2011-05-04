@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), *%w[helper])
+require 'helper'
 
 class TestParsing < Test::Unit::TestCase
   # Wed Aug 16 14:00:00 UTC 2006
@@ -639,6 +639,9 @@ class TestParsing < Test::Unit::TestCase
   def test_am_pm
     assert_equal Time.local(2006, 8, 16), parse_now("8/16/2006 at 12am")
     assert_equal Time.local(2006, 8, 16, 12), parse_now("8/16/2006 at 12pm")
+    assert_equal Time.local(2006, 8, 16, 3), parse_now("8/16/2006 03:00 am")
+    assert_equal Time.local(2006, 8, 16, 15), parse_now("8/16/2006 3:00 pm")
+    assert_equal Time.local(2006, 8, 16, 15), parse_now("8/16/2006 03:00 pm")
   end
 
   def test_a_p
